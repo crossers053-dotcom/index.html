@@ -4,13 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>АККАУНТ.EXE — УДАЛИТЕЛЬ</title>
+<title>DELTARUNE.EXE — САМЫЙ НОРМАЛЬНЫЙ САЙТ</title>
 
 <style>
 *{
     box-sizing:border-box;
-    margin:0;
-    padding:0;
 }
 
 html{
@@ -18,303 +16,311 @@ html{
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
+    margin:0;
     background:#050505;
-    color:white;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
     overflow-x:hidden;
 }
 
-/* ФОН */
+/* ================= ФОН ================= */
 
-.bg{
+body:before{
+    content:"";
     position:fixed;
     inset:0;
-    z-index:-5;
+    z-index:-10;
     background:
-        radial-gradient(circle at 20% 20%, #ff004c22, transparent 30%),
-        radial-gradient(circle at 80% 30%, #00ffff22, transparent 30%),
-        radial-gradient(circle at 50% 90%, #8a00ff22, transparent 35%),
+        radial-gradient(circle at 20% 10%,#3b0066 0,transparent 30%),
+        radial-gradient(circle at 80% 20%,#002d55 0,transparent 30%),
+        radial-gradient(circle at 50% 90%,#550000 0,transparent 35%),
         #050505;
 }
 
-.grid{
+body:after{
+    content:"";
     position:fixed;
     inset:0;
-    z-index:-4;
-    opacity:.15;
+    z-index:-9;
+    opacity:.08;
     background-image:
         linear-gradient(#fff 1px,transparent 1px),
         linear-gradient(90deg,#fff 1px,transparent 1px);
-    background-size:50px 50px;
-    animation:gridMove 8s linear infinite;
+    background-size:40px 40px;
+    animation:grid 10s linear infinite;
 }
 
-@keyframes gridMove{
+@keyframes grid{
     from{transform:translateY(0)}
-    to{transform:translateY(50px)}
+    to{transform:translateY(40px)}
 }
 
-/* ШАПКА */
+/* ================= HEADER ================= */
 
 header{
     position:sticky;
     top:0;
-    z-index:20;
-    backdrop-filter:blur(15px);
-    background:#050505bb;
-    border-bottom:1px solid #ffffff18;
-    padding:15px 6%;
+    z-index:100;
+    background:#000e;
+    backdrop-filter:blur(12px);
+    border-bottom:3px solid #fff;
+}
+
+.top{
+    max-width:1400px;
+    margin:auto;
+    padding:14px 20px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
+    gap:15px;
 }
 
 .logo{
+    font-size:25px;
     font-weight:1000;
-    font-size:22px;
-    letter-spacing:2px;
+    letter-spacing:3px;
 }
 
 .logo span{
     color:#ff174f;
 }
 
-.status{
-    padding:8px 13px;
-    border:1px solid #00ff8844;
-    background:#00ff8812;
-    border-radius:100px;
-    color:#00ff88;
-    font-size:12px;
+.online{
+    color:#00ff66;
     font-weight:bold;
-}
-
-.dot{
-    display:inline-block;
-    width:8px;
-    height:8px;
-    background:#00ff88;
-    border-radius:50%;
-    margin-right:6px;
-    box-shadow:0 0 15px #00ff88;
-}
-
-/* HERO */
-
-.hero{
-    min-height:90vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:70px 20px;
-}
-
-.hero-content{
-    max-width:1000px;
-}
-
-.badge{
-    display:inline-block;
-    padding:10px 18px;
-    border-radius:100px;
-    background:#ffffff0d;
-    border:1px solid #ffffff20;
-    color:#aaa;
-    margin-bottom:25px;
     font-size:13px;
 }
 
-h1{
-    font-size:clamp(50px,10vw,125px);
-    line-height:.82;
+.online i{
+    display:inline-block;
+    width:9px;
+    height:9px;
+    background:#00ff66;
+    border-radius:50%;
+    box-shadow:0 0 15px #00ff66;
+}
+
+/* ================= NAV ================= */
+
+nav{
+    display:flex;
+    overflow-x:auto;
+    border-top:1px solid #fff3;
+}
+
+nav a{
+    flex:1;
+    min-width:120px;
+    padding:13px 10px;
+    text-align:center;
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
+    border-right:1px solid #fff2;
+    transition:.2s;
+}
+
+nav a:hover{
+    background:#fff;
+    color:#000;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:760px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:80px 20px;
+    position:relative;
+}
+
+.hero-box{
+    max-width:1100px;
+}
+
+.small{
+    color:#aaa;
+    letter-spacing:5px;
+    font-size:13px;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:clamp(55px,11vw,150px);
+    line-height:.78;
+    margin:0;
     font-weight:1000;
-    letter-spacing:-7px;
-    text-transform:uppercase;
+    letter-spacing:-8px;
     text-shadow:
-        5px 5px 0 #ff174f,
-        -5px -5px 0 #00e5ff;
-    animation:glitch 3s infinite;
+        7px 7px #ff174f,
+        -7px -7px #00e5ff;
+    animation:glitch 2.7s infinite;
 }
 
 @keyframes glitch{
-    0%,90%,100%{transform:translate(0)}
-    91%{transform:translate(-5px,2px)}
-    92%{transform:translate(5px,-2px)}
-    93%{transform:translate(-2px,0)}
+    0%,88%,100%{transform:translate(0)}
+    89%{transform:translate(-8px,3px)}
+    90%{transform:translate(8px,-3px)}
+    91%{transform:translate(-3px,0)}
 }
 
-.subtitle{
-    margin:35px auto;
-    max-width:650px;
+.hero p{
+    max-width:700px;
+    margin:40px auto;
     color:#aaa;
-    font-size:18px;
-    line-height:1.6;
+    font-size:19px;
+    line-height:1.7;
 }
 
-.start{
+.bigbutton{
+    padding:20px 40px;
+    background:#fff;
+    color:#000;
     border:0;
-    cursor:pointer;
-    padding:20px 45px;
-    border-radius:18px;
-    background:white;
-    color:black;
-    font-weight:1000;
+    border-radius:4px;
     font-size:18px;
+    font-weight:1000;
+    cursor:pointer;
     transition:.2s;
-    box-shadow:0 0 50px #ffffff33;
 }
 
-.start:hover{
-    transform:scale(1.08) rotate(-2deg);
+.bigbutton:hover{
+    transform:scale(1.1) rotate(-2deg);
     box-shadow:
-        0 0 40px #ff174f,
-        0 0 80px #00e5ff;
+        0 0 30px #ff174f,
+        0 0 60px #00e5ff;
 }
 
-/* СЕКЦИИ */
+/* ================= ОБЩЕЕ ================= */
 
 section{
-    width:min(1100px,92%);
-    margin:0 auto;
-    padding:80px 0;
+    width:min(1300px,92%);
+    margin:auto;
+    padding:90px 0;
 }
 
-.title{
-    font-size:42px;
+.section-title{
+    font-size:48px;
     font-weight:1000;
-    margin-bottom:30px;
+    margin-bottom:40px;
+    text-transform:uppercase;
 }
 
-/* КАРТОЧКИ */
+.section-title span{
+    color:#ff174f;
+}
+
+/* ================= КАРТОЧКИ ================= */
 
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:18px;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:20px;
 }
 
 .card{
     padding:25px;
-    border:1px solid #ffffff15;
+    min-height:220px;
     background:#ffffff08;
-    border-radius:25px;
-    backdrop-filter:blur(10px);
+    border:2px solid #ffffff20;
+    border-radius:18px;
     transition:.3s;
 }
 
 .card:hover{
-    transform:translateY(-8px) rotate(.5deg);
-    border-color:#ffffff40;
+    transform:translateY(-10px) rotate(.7deg);
+    border-color:#fff;
+    background:#ffffff12;
 }
 
-.big{
-    font-size:35px;
-    margin-bottom:10px;
+.icon{
+    font-size:50px;
+    margin-bottom:20px;
 }
 
 .card h3{
-    margin-bottom:8px;
+    font-size:24px;
+    margin:0 0 12px;
 }
 
 .card p{
-    color:#888;
-    line-height:1.5;
+    color:#999;
+    line-height:1.6;
 }
 
-/* УДАЛИТЕЛЬ */
+/* ================= ПЕРСОНАЖИ ================= */
 
-.delete-box{
+.character{
+    min-height:300px;
     position:relative;
     overflow:hidden;
-    border-radius:35px;
-    padding:40px;
-    background:
-        linear-gradient(135deg,#ff174f12,#00e5ff0d),
-        #ffffff08;
-    border:1px solid #ffffff20;
 }
 
-.warning{
-    color:#ff496f;
-    font-weight:bold;
-    margin-bottom:10px;
-}
-
-.delete-box h2{
-    font-size:clamp(35px,6vw,70px);
-    margin-bottom:10px;
-}
-
-.delete-box p{
-    color:#999;
-    margin-bottom:30px;
-}
-
-.input-wrap{
+.face{
+    width:120px;
+    height:120px;
+    margin-bottom:20px;
+    border:4px solid #fff;
     display:flex;
-    gap:10px;
-    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    font-size:55px;
+    background:#111;
 }
 
-input{
-    flex:1;
-    min-width:200px;
-    padding:18px;
-    border-radius:15px;
-    border:1px solid #ffffff20;
-    background:#00000066;
-    color:white;
-    outline:none;
-    font-size:16px;
+.character:nth-child(1) .face{
+    background:#15152d;
 }
 
-input:focus{
-    border-color:#ff174f;
-    box-shadow:0 0 20px #ff174f33;
+.character:nth-child(2) .face{
+    background:#40144b;
 }
 
-.delete-btn{
-    padding:18px 25px;
-    border:0;
-    border-radius:15px;
-    background:#ff174f;
-    color:white;
-    font-weight:1000;
-    cursor:pointer;
-    transition:.2s;
+.character:nth-child(3) .face{
+    background:#20502d;
 }
 
-.delete-btn:hover{
-    transform:scale(1.05);
-    box-shadow:0 0 30px #ff174f88;
+.character:nth-child(4) .face{
+    background:#12335a;
 }
 
-/* ТЕРМИНАЛ */
+.character:nth-child(5) .face{
+    background:#501717;
+}
+
+.stats{
+    color:#aaa;
+    font-family:monospace;
+    line-height:1.7;
+}
+
+/* ================= ТЕРМИНАЛ ================= */
 
 .terminal{
-    margin-top:25px;
-    background:#020202;
-    border:1px solid #ffffff15;
-    border-radius:20px;
+    background:#010101;
+    border:2px solid #00ff66;
+    box-shadow:0 0 35px #00ff6622;
+    border-radius:12px;
     overflow:hidden;
-    box-shadow:0 20px 70px #000;
 }
 
 .terminal-head{
     padding:12px 15px;
-    border-bottom:1px solid #ffffff10;
-    color:#777;
-    font-size:12px;
+    background:#111;
+    color:#00ff66;
+    font-family:monospace;
 }
 
 .terminal-body{
-    padding:20px;
-    height:230px;
+    height:330px;
     overflow:hidden;
+    padding:20px;
+    color:#00ff66;
     font-family:monospace;
-    color:#00ff88;
-    font-size:13px;
     line-height:1.7;
 }
 
@@ -326,186 +332,298 @@ input:focus{
     color:#00e5ff;
 }
 
-/* СТАТИСТИКА */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-}
-
-.stat{
-    text-align:center;
-    padding:30px 15px;
-    border-radius:20px;
-    background:#ffffff08;
-    border:1px solid #ffffff12;
-}
-
-.stat strong{
-    display:block;
-    font-size:38px;
-    margin-bottom:5px;
-}
-
-.stat span{
-    color:#777;
-}
-
-/* ОТЗЫВЫ */
-
-.review{
-    padding:25px;
-    background:#ffffff08;
-    border:1px solid #ffffff15;
-    border-radius:22px;
-}
-
-.stars{
+.yellow{
     color:#ffe600;
-    margin-bottom:12px;
 }
 
-.review p{
-    color:#bbb;
-    line-height:1.5;
-}
+/* ================= МИНИ-ИГРА ================= */
 
-.author{
-    margin-top:15px;
-    color:#666;
-    font-size:13px;
-}
-
-/* БАННЕР */
-
-.chaos{
+.game{
+    padding:35px;
+    background:#ffffff06;
+    border:2px dashed #fff;
     text-align:center;
-    padding:100px 20px;
+}
+
+.game h3{
+    font-size:32px;
+}
+
+.game-buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+.game-buttons button{
+    width:120px;
+    height:80px;
+    border:2px solid #fff;
+    background:#000;
+    color:#fff;
+    font-size:40px;
+    cursor:pointer;
+    transition:.15s;
+}
+
+.game-buttons button:hover{
+    background:#fff;
+    color:#000;
+    transform:scale(1.1);
+}
+
+.game-result{
+    min-height:35px;
+    margin-top:25px;
+    font-weight:bold;
+    color:#00ff66;
+}
+
+/* ================= ПСЕВДО-ЗАГРУЗКА ================= */
+
+.download{
+    border:2px solid #ff174f;
+    padding:35px;
+    background:#ff174f08;
+}
+
+.progress{
+    width:100%;
+    height:30px;
+    background:#111;
+    border:1px solid #fff4;
+    margin:25px 0;
     overflow:hidden;
 }
 
-.chaos h2{
-    font-size:clamp(45px,9vw,100px);
-    font-weight:1000;
-    text-transform:uppercase;
-    animation:shake .15s infinite;
+.bar{
+    height:100%;
+    width:0;
+    background:#ff174f;
+    transition:width .2s;
 }
 
-@keyframes shake{
-    0%{transform:translate(0)}
-    25%{transform:translate(2px,-1px)}
-    50%{transform:translate(-2px,2px)}
-    75%{transform:translate(1px,1px)}
-    100%{transform:translate(0)}
-}
-
-.chaos p{
-    color:#777;
-    margin-top:20px;
-}
-
-/* МОДАЛКА */
-
-.modal{
-    position:fixed;
-    inset:0;
-    z-index:100;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    background:#000000dd;
-    backdrop-filter:blur(15px);
-    padding:20px;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modal-box{
-    width:min(600px,100%);
-    text-align:center;
-    padding:45px 25px;
-    border-radius:30px;
-    background:#090909;
-    border:1px solid #ffffff20;
-    box-shadow:
-        0 0 80px #ff174f33,
-        0 0 120px #00e5ff22;
-    animation:pop .35s ease;
-}
-
-@keyframes pop{
-    from{
-        transform:scale(.5) rotate(-5deg);
-        opacity:0;
-    }
-    to{
-        transform:scale(1);
-        opacity:1;
-    }
-}
-
-.modal-emoji{
-    font-size:75px;
-}
-
-.modal-box h2{
-    font-size:40px;
-    margin:15px 0;
-}
-
-.modal-box p{
-    color:#888;
-    line-height:1.6;
-}
-
-.close{
-    margin-top:25px;
-    padding:15px 30px;
+.download button{
+    padding:15px 25px;
+    background:#ff174f;
+    color:#fff;
     border:0;
-    border-radius:12px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ================= ОПРОС ================= */
+
+.poll{
+    background:#fff08;
+    border:2px solid #ffe600;
+    padding:30px;
+}
+
+.poll label{
+    display:block;
+    padding:15px;
+    margin:8px 0;
+    background:#ffffff08;
+    cursor:pointer;
+}
+
+.poll button{
+    margin-top:15px;
+    padding:15px 25px;
+    border:0;
+    font-weight:bold;
+}
+
+/* ================= НОВОСТИ ================= */
+
+.news{
+    display:grid;
+    gap:15px;
+}
+
+.news-item{
+    padding:22px;
+    border-left:6px solid #ff174f;
+    background:#ffffff08;
+}
+
+.news-item b{
+    color:#ff174f;
+}
+
+.news-item p{
+    color:#aaa;
+}
+
+/* ================= МЕМЫ ================= */
+
+.meme{
+    padding:35px;
+    text-align:center;
+    font-weight:1000;
+    font-size:clamp(25px,5vw,60px);
+    background:
+        linear-gradient(
+            45deg,
+            #ff174f,
+            #ffe600,
+            #00ff66,
+            #00e5ff,
+            #7c00ff
+        );
+    background-size:400% 400%;
+    animation:rainbow 5s infinite;
+    color:#000;
+    text-shadow:3px 3px #fff;
+}
+
+@keyframes rainbow{
+    0%{background-position:0 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0 50%}
+}
+
+/* ================= СЕКРЕТ ================= */
+
+.secret{
+    text-align:center;
+    padding:80px 20px;
+    border:2px solid #fff;
+}
+
+.secret button{
+    padding:20px 35px;
+    background:#000;
+    color:#fff;
+    border:2px solid #fff;
     cursor:pointer;
     font-weight:bold;
 }
 
-/* ФУТЕР */
-
-footer{
-    text-align:center;
-    padding:50px 20px;
-    border-top:1px solid #ffffff10;
-    color:#555;
-    font-size:13px;
+.secret-message{
+    display:none;
+    margin-top:30px;
+    font-size:30px;
+    color:#ff174f;
+    font-weight:1000;
 }
 
-footer b{
+/* ================= ФЕЙКОВАЯ ТАБЛИЦА ================= */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:#ffffff05;
+}
+
+th,td{
+    padding:15px;
+    border:1px solid #fff2;
+    text-align:left;
+}
+
+th{
+    background:#fff;
+    color:#000;
+}
+
+td{
+    color:#aaa;
+}
+
+/* ================= СЧЁТЧИКИ ================= */
+
+.counter-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.counter{
+    padding:35px;
+    text-align:center;
+    background:#ffffff08;
+    border:1px solid #fff2;
+}
+
+.counter strong{
+    display:block;
+    font-size:45px;
+    color:#00e5ff;
+}
+
+.counter span{
+    color:#777;
+}
+
+/* ================= ХАОС ================= */
+
+.chaos{
+    min-height:500px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+}
+
+.chaos h2{
+    font-size:clamp(50px,12vw,160px);
+    margin:0;
+    font-weight:1000;
+    animation:shake .13s infinite;
+}
+
+@keyframes shake{
+    0%{transform:translate(0)}
+    25%{transform:translate(4px,-3px)}
+    50%{transform:translate(-5px,2px)}
+    75%{transform:translate(2px,4px)}
+    100%{transform:translate(0)}
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    border-top:3px solid #fff;
+    padding:60px 20px;
+    text-align:center;
+    color:#666;
+}
+
+footer strong{
     color:#ff174f;
 }
 
-/* МОБИЛКА */
+/* ================= АДАПТИВ ================= */
 
-@media(max-width:600px){
-    h1{
-        letter-spacing:-4px;
-    }
+@media(max-width:650px){
 
-    .stats{
-        grid-template-columns:1fr;
-    }
-
-    .delete-box{
-        padding:25px;
-    }
-
-    .input-wrap{
+    .top{
         flex-direction:column;
     }
 
-    input,
-    .delete-btn{
-        width:100%;
+    .hero{
+        min-height:650px;
+    }
+
+    .hero h1{
+        letter-spacing:-5px;
+    }
+
+    .counter-grid{
+        grid-template-columns:1fr;
+    }
+
+    .section-title{
+        font-size:35px;
+    }
+
+    nav a{
+        min-width:100px;
     }
 }
 </style>
@@ -513,231 +631,469 @@ footer b{
 
 <body>
 
-<div class="bg"></div>
-<div class="grid"></div>
-
 <header>
-    <div class="logo">ACCOUNT<span>.EXE</span></div>
 
-    <div class="status">
-        <span class="dot"></span>
-        СЕРВЕР ЖИВ
-    </div>
+<div class="top">
+
+<div class="logo">
+DELTARUNE<span>.EXE</span>
+</div>
+
+<div class="online">
+<i></i>
+ОНЛАЙН: 1 человек
+</div>
+
+</div>
+
+<nav>
+
+<a href="#home">ГЛАВНАЯ</a>
+<a href="#characters">ПЕРСОНАЖИ</a>
+<a href="#terminal">ТЕРМИНАЛ</a>
+<a href="#games">ИГРЫ</a>
+<a href="#news">НОВОСТИ</a>
+<a href="#download">СКАЧАТЬ</a>
+<a href="#secret">СЕКРЕТ</a>
+
+</nav>
+
 </header>
 
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
 
-<div class="hero">
+<div class="hero" id="home">
 
-<div class="hero-content">
+<div class="hero-box">
 
-<div class="badge">
-    ⚠️ СУПЕР-СЕКРЕТНАЯ ТЕХНОЛОГИЯ 100% НЕ СЕРЬЁЗНО
+<div class="small">
+НЕОФИЦИАЛЬНЫЙ • НЕСЕРЬЁЗНЫЙ • ОЧЕНЬ СТРАННЫЙ
 </div>
 
 <h1>
-    УДАЛЯЕМ<br>
-    ЛЮБОЙ<br>
-    АККАУНТ
+DELTA<br>
+RUNE
 </h1>
 
-<p class="subtitle">
-    Самый подозрительный сервис интернета.
-    Нажимаешь кнопку — ничего не происходит.
-    Но выглядит очень профессионально.
+<p>
+Добро пожаловать на самый огромный,
+ненужный и подозрительно красивый
+фан-сайт по DELTARUNE.
+<br><br>
+Здесь есть абсолютно всё.
+Кроме смысла.
 </p>
 
-<button class="start" onclick="scrollToDelete()">
-    🚀 НАЧАТЬ КАТАСТРОФУ
+<button class="bigbutton"
+onclick="document.getElementById('characters').scrollIntoView()">
+ВОЙТИ В ТЁМНЫЙ МИР →
 </button>
 
 </div>
+
 </div>
 
 
-<!-- ФИЧИ -->
+<!-- ================= ABOUT ================= -->
 
 <section>
 
-<div class="title">
-    Почему это абсолютно гениально?
+<div class="section-title">
+О ЧЁМ ЭТОТ <span>БАРДАК?</span>
 </div>
 
 <div class="cards">
 
 <div class="card">
-<div class="big">💀</div>
-<h3>Удаление 3000</h3>
+<div class="icon">❤️</div>
+<h3>SOUL</h3>
 <p>
-Мы удаляем настолько быстро,
-что компьютер даже не успевает понять,
-что произошло.
+Очень важное красное сердечко.
+Оно существует. Наверное.
 </p>
 </div>
 
 <div class="card">
-<div class="big">🧠</div>
-<h3>Нейросеть</h3>
+<div class="icon">🗡️</div>
+<h3>ПРИКЛЮЧЕНИЕ</h3>
 <p>
-Наш искусственный интеллект
-состоит из двух операторов
-if и alert.
+Идём в Тёмный мир,
+потом обратно,
+потом опять туда.
 </p>
 </div>
 
 <div class="card">
-<div class="big">⚡</div>
-<h3>Квантовая скорость</h3>
+<div class="icon">🐐</div>
+<h3>КРИС</h3>
 <p>
-Результат появляется ещё до того,
-как ты нажал кнопку.
-Наверное.
+Крис. Просто Крис.
+Что ещё тебе нужно?
 </p>
 </div>
 
 <div class="card">
-<div class="big">🗿</div>
-<h3>Абсолютная безопасность</h3>
+<div class="icon">🍕</div>
+<h3>ПИЦЦА</h3>
 <p>
-Мы не просим пароль,
-токены или другие секретные данные.
+Никакого отношения к сюжету.
+Но пицца здесь нужна обязательно.
 </p>
 </div>
 
 </div>
+
 </section>
 
 
-<!-- УДАЛИТЕЛЬ -->
+<!-- ================= CHARACTERS ================= -->
 
-<section id="deleter">
+<section id="characters">
 
-<div class="delete-box">
-
-<div class="warning">
-    🔴 ОЧЕНЬ СЕРЬЁЗНАЯ КНОПКА
+<div class="section-title">
+ГЛАВНЫЕ <span>ПЕРСОНАЖИ</span>
 </div>
 
-<h2>
-    УДАЛИТЕЛЬ.EXE
-</h2>
+<div class="cards">
 
-<p>
-    Введи любое имя. Система проведёт
-    чрезвычайно важный анализ из воздуха.
-</p>
+<div class="card character">
 
-<div class="input-wrap">
+<div class="face">🧑</div>
 
-<input
-    id="username"
-    type="text"
-    maxlength="30"
-    placeholder="Например: builderman"
-/>
+<h3>КРИС</h3>
 
-<button class="delete-btn" onclick="destroyAccount()">
-    💣 УНИЧТОЖИТЬ
-</button>
+<div class="stats">
+HP: 999<br>
+АТК: зачем<br>
+ЗАЩ: да<br>
+ЛЮБИТ: ничего не объяснять
+</div>
 
+</div>
+
+
+<div class="card character">
+
+<div class="face">💜</div>
+
+<h3>СЬЮЗИ</h3>
+
+<div class="stats">
+HP: 9999<br>
+АТК: МНОГО<br>
+ЗАЩ: неизвестно<br>
+ЛЮБИТ: ломать всё
+</div>
+
+</div>
+
+
+<div class="card character">
+
+<div class="face">🐐</div>
+
+<h3>РАЛЬЗЕЙ</h3>
+
+<div class="stats">
+HP: 777<br>
+АТК: мир<br>
+ЗАЩ: шапка<br>
+ЛЮБИТ: чай
+</div>
+
+</div>
+
+
+<div class="card character">
+
+<div class="face">♠️</div>
+
+<h3>ЛАНСЕР</h3>
+
+<div class="stats">
+HP: 100000<br>
+АТК: ПИКА<br>
+ЗАЩ: ПИКА<br>
+ЛЮБИТ: быть крутым
+</div>
+
+</div>
+
+
+<div class="card character">
+
+<div class="face">📺</div>
+
+<h3>СПАМТОН</h3>
+
+<div class="stats">
+HP: [BIG]<br>
+АТК: $$$<br>
+ЗАЩ: [ERROR]<br>
+ЛЮБИТ: ПРОДАЖИ
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= TERMINAL ================= -->
+
+<section id="terminal">
+
+<div class="section-title">
+ТЕРМИНАЛ <span>ДАРКОВОГО УРОВНЯ</span>
 </div>
 
 <div class="terminal">
 
 <div class="terminal-head">
-    ● ● ● &nbsp; ACCOUNT_TERMINAL.exe
+DELTARUNE_TERMINAL.exe — НЕ ТРОГАТЬ
 </div>
 
-<div class="terminal-body" id="terminal">
+<div class="terminal-body" id="terminalText">
+
+<span class="blue">[BOOT]</span>
+Запуск системы...<br>
+
+<span class="blue">[BOOT]</span>
+Проверка тёмного мира...<br>
+
+<span class="yellow">[WARNING]</span>
+Тёмный мир найден.<br>
+
+<span class="red">[ERROR]</span>
+Смысл сайта не найден.<br>
 
 <span class="blue">[SYSTEM]</span>
- Инициализация супер-системы...<br>
+Продолжаем работу.<br>
 
-<span class="blue">[SYSTEM]</span>
- Подключение к калькулятору...<br>
-
-<span class="blue">[SYSTEM]</span>
- Проверка интернета... OK<br>
-
-<span class="red">[WARNING]</span>
- Слишком много мемов обнаружено.<br>
-
-<span class="blue">[SYSTEM]</span>
- Ожидание пользователя...
 <br>
 
-</div>
+&gt; ожидание пользователя...
+
 </div>
 
 </div>
+
 </section>
 
 
-<!-- СТАТИСТИКА -->
+<!-- ================= GAME ================= -->
+
+<section id="games">
+
+<div class="section-title">
+МИНИ-ИГРА <span>100% НЕ БЕСПОЛЕЗНАЯ</span>
+</div>
+
+<div class="game">
+
+<h3>
+КТО ТЫ???
+</h3>
+
+<p>
+Нажми на одну кнопку и узнай свою судьбу.
+</p>
+
+<div class="game-buttons">
+
+<button onclick="choose('КРИС')">🧑</button>
+
+<button onclick="choose('СЬЮЗИ')">💜</button>
+
+<button onclick="choose('РАЛЬЗЕЙ')">🐐</button>
+
+<button onclick="choose('ЛАНСЕР')">♠️</button>
+
+</div>
+
+<div class="game-result" id="gameResult">
+Результат появится здесь.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= DOWNLOAD ================= -->
+
+<section id="download">
+
+<div class="section-title">
+СКАЧАТЬ <span>DELTARUNE 9000</span>
+</div>
+
+<div class="download">
+
+<h2>
+DELTARUNE_SUPER_ULTRA_FINAL_FINAL.exe
+</h2>
+
+<p>
+Размер: 9999999999 ГБ
+<br>
+Совместимость: картошка
+<br>
+Требуется: Windows 3000
+</p>
+
+<div class="progress">
+<div class="bar" id="bar"></div>
+</div>
+
+<button onclick="downloadFake()">
+СКАЧАТЬ 100% НАСТОЯЩИЙ ФАЙЛ
+</button>
+
+<p id="downloadText"></p>
+
+</div>
+
+</section>
+
+
+<!-- ================= NEWS ================= -->
+
+<section id="news">
+
+<div class="section-title">
+СРОЧНЫЕ <span>НОВОСТИ</span>
+</div>
+
+<div class="news">
+
+<div class="news-item">
+<b>НОВОСТЬ №1</b>
+<p>
+Сайт всё ещё существует.
+Учёные не понимают почему.
+</p>
+</div>
+
+<div class="news-item">
+<b>НОВОСТЬ №2</b>
+<p>
+Лансер официально признан
+слишком крутым для этого сайта.
+</p>
+</div>
+
+<div class="news-item">
+<b>НОВОСТЬ №3</b>
+<p>
+Ральзей снова поставил чайник.
+Это уже третий раз за час.
+</p>
+</div>
+
+<div class="news-item">
+<b>НОВОСТЬ №4</b>
+<p>
+Спамтон требует добавить больше
+кнопок с надписью BIG SHOT.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= MEME ================= -->
 
 <section>
 
-<div class="title">
-    📊 Абсолютно настоящая статистика
-</div>
+<div class="meme">
 
-<div class="stats">
-
-<div class="stat">
-<strong id="counter1">0</strong>
-<span>аккаунтов удалено</span>
-</div>
-
-<div class="stat">
-<strong id="counter2">0</strong>
-<span>довольных людей</span>
-</div>
-
-<div class="stat">
-<strong id="counter3">0%</strong>
-<span>научной точности</span>
-</div>
+ЭТОТ САЙТ СОЗДАВАЛСЯ<br>
+В 3 ЧАСА НОЧИ<br>
+И ЭТО ВИДНО
 
 </div>
 
 </section>
 
 
-<!-- ОТЗЫВЫ -->
+<!-- ================= POLL ================= -->
 
 <section>
 
-<div class="title">
-    💬 Что говорят пользователи
+<div class="section-title">
+ОПРОС <span>ВСЕЛЕНСКОЙ ВАЖНОСТИ</span>
 </div>
 
-<div class="cards">
+<div class="poll">
 
-<div class="review">
-<div class="stars">★★★★★</div>
-<p>
-«Я ввёл имя и через 0.2 секунды
-понял, что меня обманули. 10/10.»
-</p>
-<div class="author">— Пользователь №18472</div>
+<h2>
+КТО САМЫЙ КРУТОЙ?
+</h2>
+
+<label>
+<input type="radio" name="poll" value="Крис">
+Крис
+</label>
+
+<label>
+<input type="radio" name="poll" value="Сьюзи">
+Сьюзи
+</label>
+
+<label>
+<input type="radio" name="poll" value="Ральзей">
+Ральзей
+</label>
+
+<label>
+<input type="radio" name="poll" value="Лансер">
+Лансер
+</label>
+
+<label>
+<input type="radio" name="poll" value="Спамтон">
+Спамтон [BIG]
+</label>
+
+<button onclick="vote()">
+ГОЛОСОВАТЬ
+</button>
+
+<p id="voteResult"></p>
+
 </div>
 
-<div class="review">
-<div class="stars">★★★★★</div>
-<p>
-«реально хороший удалитель»
-</p>
-<div class="author">— какой-то чел</div>
+</section>
+
+
+<!-- ================= STATS ================= -->
+
+<section>
+
+<div class="section-title">
+АБСОЛЮТНО <span>НАСТОЯЩАЯ СТАТИСТИКА</span>
 </div>
 
-<div class="review">
-<div class="stars">★★★★★</div>
-<p>
-«Нажал кнопку. Ничего не произошло.
-Лучший сайт в моей жизни.»
-</p>
-<div class="author">— Аноним</div>
+<div class="counter-grid">
+
+<div class="counter">
+<strong id="c1">0</strong>
+<span>Посетителей</span>
+</div>
+
+<div class="counter">
+<strong id="c2">0</strong>
+<span>Тёмных миров</span>
+</div>
+
+<div class="counter">
+<strong id="c3">0</strong>
+<span>Потерянных мозгов</span>
 </div>
 
 </div>
@@ -745,305 +1101,374 @@ if и alert.
 </section>
 
 
-<!-- БЕЗУМИЕ -->
+<!-- ================= TABLE ================= -->
+
+<section>
+
+<div class="section-title">
+ТАБЛИЦА <span>КРУТОСТИ</span>
+</div>
+
+<table>
+
+<tr>
+<th>Персонаж</th>
+<th>Крутость</th>
+<th>Интеллект</th>
+<th>Чай</th>
+</tr>
+
+<tr>
+<td>Крис</td>
+<td>█████████░</td>
+<td>???</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>Сьюзи</td>
+<td>██████████</td>
+<td>████░░░░░░</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>Ральзей</td>
+<td>███████░░░</td>
+<td>██████████</td>
+<td>999</td>
+</tr>
+
+<tr>
+<td>Лансер</td>
+<td>████████████████</td>
+<td>1</td>
+<td>не пьёт</td>
+</tr>
+
+<tr>
+<td>Спамтон</td>
+<td>[BIG]</td>
+<td>[BIG]</td>
+<td>$$$$</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- ================= SECRET ================= -->
+
+<section id="secret">
+
+<div class="secret">
+
+<h2>
+⚠️ НЕ НАЖИМАЙ
+</h2>
+
+<p>
+Серьёзно. Не нажимай.
+</p>
+
+<button onclick="secret()">
+НЕ НАЖИМАТЬ
+</button>
+
+<div class="secret-message" id="secretMessage">
+ТЫ НАЖАЛ. 🤡<br><br>
+ПОЗДРАВЛЯЮ.<br>
+ТЫ СЛОМАЛ САЙТ.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= CHAOS ================= -->
 
 <div class="chaos">
 
 <h2>
-    НЕ НАЖИМАЙ<br>
-    ЭТУ КНОПКУ
+KRIS,<br>
+GET THE BANANA.
 </h2>
-
-<p>
-    Ладно, нажми. Мы всё равно знаем, что ты нажмёшь.
-</p>
 
 </div>
 
 
+<!-- ================= FOOTER ================= -->
+
 <footer>
 
-<p>
-    <b>ACCOUNT.EXE</b> — это шуточный симулятор.
-</p>
+<strong>DELTARUNE.EXE</strong>
 
-<br>
+<br><br>
 
-<p>
-    Никакие реальные аккаунты не удаляются.
-    Сервис не связан с Roblox.
-    Пароли и секретные данные не требуются.
-</p>
+Самый ненужный фан-сайт во вселенной.
+
+<br><br>
+
+Неофициальный фанатский проект.<br>
+Не связан с официальными разработчиками DELTARUNE.
+
+<br><br>
+
+❤️ 0 нормальности • 100% хаоса ❤️
 
 </footer>
 
 
-<!-- МОДАЛКА -->
-
-<div class="modal" id="modal">
-
-<div class="modal-box">
-
-<div class="modal-emoji">
-    💀
-</div>
-
-<h2>
-    УПС.
-</h2>
-
-<p id="resultText">
-    Аккаунт успешно удалён.
-</p>
-
-<button class="close" onclick="closeModal()">
-    Я ПОНЯЛ ЧТО ЭТО ПРИКОЛ 😂
-</button>
-
-</div>
-
-</div>
-
-
 <script>
 
-/* ПРОКРУТКА */
-
-function scrollToDelete(){
-
-    document.getElementById("deleter")
-    .scrollIntoView({
-        behavior:"smooth"
-    });
-
-}
-
-
-/* ТЕРМИНАЛ */
+/* ================= ТЕРМИНАЛ ================= */
 
 const terminal =
-document.getElementById("terminal");
+document.getElementById("terminalText");
 
-const messages = [
-    "[SYSTEM] Проверка кармы...",
-    "[SYSTEM] Поиск кнопки удаления...",
-    "[AI] Анализ имени пользователя...",
-    "[AI] Имя выглядит подозрительно.",
-    "[SYSTEM] Запуск суперсекретного алгоритма...",
-    "[SYSTEM] Загрузка мемов...",
-    "[WARNING] Мемов слишком много.",
-    "[SYSTEM] Попытка понять происходящее...",
-    "[AI] Я тоже не понимаю.",
-    "[SYSTEM] Подготовка кнопки...",
-    "[SYSTEM] Всё готово."
+const lines = [
+
+"[SYSTEM] Поиск Крис...",
+"[SYSTEM] Крис найден.",
+"[SYSTEM] Поиск Сьюзи...",
+"[SYSTEM] Сьюзи найдена.",
+"[SYSTEM] Поиск Ральзея...",
+"[SYSTEM] Ральзей найден.",
+"[WARNING] Слишком много Лансера.",
+"[ERROR] Лансер отказался уходить.",
+"[SYSTEM] Запуск тёмного мира.",
+"[SYSTEM] Чай установлен.",
+"[BIG SHOT] $$$$$$$$$$$$$",
+"[SYSTEM] Проверка мозга...",
+"[ERROR] Мозг не найден.",
+"[SYSTEM] Всё нормально."
+
 ];
 
-let messageIndex = 0;
+let line=0;
 
-setInterval(() => {
+setInterval(()=>{
 
-    if(messageIndex >= messages.length){
-        messageIndex = 0;
-    }
+    const div =
+    document.createElement("div");
 
-    const line = document.createElement("div");
+    div.textContent =
+    lines[line];
 
-    line.textContent =
-        messages[messageIndex];
+    if(lines[line].includes("ERROR"))
+        div.className="red";
 
-    terminal.appendChild(line);
+    if(lines[line].includes("SYSTEM"))
+        div.className="blue";
+
+    terminal.appendChild(div);
 
     terminal.scrollTop =
-        terminal.scrollHeight;
+    terminal.scrollHeight;
 
-    messageIndex++;
+    line++;
 
-},1800);
+    if(line>=lines.length)
+        line=0;
+
+},1200);
 
 
-/* УДАЛЕНИЕ */
+/* ================= ИГРА ================= */
 
-function destroyAccount(){
+function choose(name){
 
-    const input =
-        document.getElementById("username");
+    const results = {
 
-    const username =
-        input.value.trim();
+        "КРИС":
+        "Ты Крис. Ты ничего не объясняешь. Сильный ход.",
 
-    if(!username){
+        "СЬЮЗИ":
+        "Ты Сьюзи. Ты сначала ломаешь дверь, потом спрашиваешь зачем.",
 
-        input.focus();
+        "РАЛЬЗЕЙ":
+        "Ты Ральзей. У тебя есть чай. Ты победил.",
 
-        terminal.innerHTML +=
-        "<div style='color:#ff174f'>[ERROR] Введите имя пользователя.</div>";
+        "ЛАНСЕР":
+        "ТЫ ЛАНСЕР. ТЫ КРУТОЙ. ВСЁ."
+    };
 
-        return;
-    }
-
-    terminal.innerHTML +=
-    "<div style='color:#00e5ff'>[USER] " +
-    escapeHtml(username) +
-    "</div>";
-
-    terminal.innerHTML +=
-    "<div style='color:#ffe600'>[SYSTEM] УДАЛЕНИЕ ЗАПУЩЕНО...</div>";
-
-    setTimeout(() => {
-
-        terminal.innerHTML +=
-        "<div style='color:#ff174f'>[WARNING] Слишком мощно...</div>";
-
-    },500);
-
-    setTimeout(() => {
-
-        terminal.innerHTML +=
-        "<div style='color:#00ff88'>[SYSTEM] УДАЛЕНИЕ ЗАВЕРШЕНО.</div>";
-
-        showResult(username);
-
-    },1200);
+    document.getElementById("gameResult")
+    .textContent =
+    results[name];
 
 }
 
 
-/* ЭКРАН РЕЗУЛЬТАТА */
+/* ================= СКАЧИВАНИЕ ================= */
 
-function showResult(username){
+function downloadFake(){
 
-    const modal =
-        document.getElementById("modal");
+    const bar =
+    document.getElementById("bar");
 
-    const result =
-        document.getElementById("resultText");
+    const text =
+    document.getElementById("downloadText");
 
-    result.innerHTML =
-        "Упс, <b>" +
-        escapeHtml(username) +
-        "</b> удалён.<br><br>" +
-        "Шучу 😂<br>" +
-        "Это всего лишь симулятор.";
+    let progress=0;
 
-    modal.classList.add("show");
-
-}
-
-
-/* ЗАКРЫТИЕ */
-
-function closeModal(){
-
-    document
-    .getElementById("modal")
-    .classList.remove("show");
-
-}
-
-
-/* БЕЗОПАСНЫЙ ТЕКСТ */
-
-function escapeHtml(text){
-
-    return text
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-
-}
-
-
-/* СТАТИСТИКА */
-
-function animateNumber(
-    element,
-    target,
-    suffix=""
-){
-
-    let current = 0;
-
-    const step =
-        Math.ceil(target / 80);
+    text.textContent =
+    "Подготовка к скачиванию...";
 
     const timer =
-        setInterval(() => {
+    setInterval(()=>{
 
-            current += step;
+        progress += Math.random()*12;
 
-            if(current >= target){
+        if(progress>=100){
 
-                current = target;
+            progress=100;
 
-                clearInterval(timer);
+            clearInterval(timer);
 
-            }
+            text.textContent =
+            "Ошибка: файл слишком крутой. Попробуйте ещё раз.";
 
-            element.textContent =
-                current.toLocaleString("ru-RU")
-                + suffix;
+        }
 
-        },25);
+        bar.style.width =
+        progress+"%";
+
+    },180);
 
 }
 
 
-/* СЛУЧАЙНЫЕ БЕЗУМНЫЕ ЧИСЛА */
+/* ================= ОПРОС ================= */
 
-animateNumber(
-    document.getElementById("counter1"),
+function vote(){
+
+    const selected =
+    document.querySelector(
+        'input[name="poll"]:checked'
+    );
+
+    const result =
+    document.getElementById("voteResult");
+
+    if(!selected){
+
+        result.textContent =
+        "СНАЧАЛА ВЫБЕРИ КОГО-НИБУДЬ 😭";
+
+        return;
+
+    }
+
+    result.textContent =
+    "Голос принят. Он абсолютно ничего не изменит.";
+
+}
+
+
+/* ================= СЕКРЕТ ================= */
+
+function secret(){
+
+    const msg =
+    document.getElementById("secretMessage");
+
+    msg.style.display="block";
+
+    document.body.style.animation =
+    "shake .1s infinite";
+
+    setTimeout(()=>{
+
+        document.body.style.animation="";
+
+    },1000);
+
+}
+
+
+/* ================= СЧЁТЧИКИ ================= */
+
+function counter(
+    element,
+    target
+){
+
+    let n=0;
+
+    const timer =
+    setInterval(()=>{
+
+        n += Math.ceil(target/50);
+
+        if(n>=target){
+
+            n=target;
+
+            clearInterval(timer);
+
+        }
+
+        element.textContent =
+        n.toLocaleString("ru-RU");
+
+    },30);
+
+}
+
+counter(
+    document.getElementById("c1"),
     69420
 );
 
-animateNumber(
-    document.getElementById("counter2"),
+counter(
+    document.getElementById("c2"),
     1337
 );
 
-animateNumber(
-    document.getElementById("counter3"),
-    0,
-    "%"
+counter(
+    document.getElementById("c3"),
+    999999
 );
 
-setTimeout(() => {
 
-    document.getElementById("counter3")
-    .textContent = "0%";
+/* ================= КЛАВИША ================= */
 
-},2200);
+document.addEventListener(
+"keydown",
+function(e){
 
+    if(e.key==="Enter"){
 
-/* ENTER */
+        document.body.style.transform =
+        "rotate(.5deg)";
 
-document
-.getElementById("username")
-.addEventListener("keydown", function(e){
+        setTimeout(()=>{
 
-    if(e.key === "Enter"){
+            document.body.style.transform="";
 
-        destroyAccount();
-
-    }
-
-});
-
-
-/* КЛИК ПО ФОНУ МОДАЛКИ */
-
-document
-.getElementById("modal")
-.addEventListener("click",function(e){
-
-    if(e.target === this){
-
-        closeModal();
+        },200);
 
     }
 
 });
+
+
+/* ================= КОНСОЛЬ ================= */
+
+console.log(
+"Ты действительно открыл консоль?"
+);
+
+console.log(
+"Зачем?"
+);
+
+console.log(
+"Здесь ничего нет."
+);
 
 </script>
 
