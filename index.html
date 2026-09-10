@@ -4,530 +4,508 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Roblox Account Deleter</title>
+<title>АККАУНТ.EXE — УДАЛИТЕЛЬ</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    font-family: Arial, sans-serif;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050505;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ФОН */
+
+.bg{
+    position:fixed;
+    inset:0;
+    z-index:-5;
     background:
-        radial-gradient(circle at 50% 0%, #292929, #0b0b0d 55%, #050506);
-    color: white;
-    min-height: 100vh;
-    overflow-x: hidden;
+        radial-gradient(circle at 20% 20%, #ff004c22, transparent 30%),
+        radial-gradient(circle at 80% 30%, #00ffff22, transparent 30%),
+        radial-gradient(circle at 50% 90%, #8a00ff22, transparent 35%),
+        #050505;
 }
 
-/* HEADER */
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 22px 7%;
+.grid{
+    position:fixed;
+    inset:0;
+    z-index:-4;
+    opacity:.15;
+    background-image:
+        linear-gradient(#fff 1px,transparent 1px),
+        linear-gradient(90deg,#fff 1px,transparent 1px);
+    background-size:50px 50px;
+    animation:gridMove 8s linear infinite;
 }
 
-.logo {
-    font-size: 21px;
-    font-weight: 900;
-    letter-spacing: 1px;
+@keyframes gridMove{
+    from{transform:translateY(0)}
+    to{transform:translateY(50px)}
 }
 
-.logo span {
-    color: #ff3d3d;
+/* ШАПКА */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:20;
+    backdrop-filter:blur(15px);
+    background:#050505bb;
+    border-bottom:1px solid #ffffff18;
+    padding:15px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-.badge {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 8px 14px;
-    border-radius: 50px;
-    color: #aaa;
-    font-size: 12px;
+.logo{
+    font-weight:1000;
+    font-size:22px;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:#ff174f;
+}
+
+.status{
+    padding:8px 13px;
+    border:1px solid #00ff8844;
+    background:#00ff8812;
+    border-radius:100px;
+    color:#00ff88;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.dot{
+    display:inline-block;
+    width:8px;
+    height:8px;
+    background:#00ff88;
+    border-radius:50%;
+    margin-right:6px;
+    box-shadow:0 0 15px #00ff88;
 }
 
 /* HERO */
 
-.hero {
-    min-height: 75vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 30px 20px;
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:70px 20px;
 }
 
-.hero h1 {
-    font-size: clamp(42px, 9vw, 85px);
-    line-height: 0.95;
-    font-weight: 900;
-    letter-spacing: -4px;
-
-    animation: fadeDown 0.9s ease;
+.hero-content{
+    max-width:1000px;
 }
 
-.hero h1 span {
-    color: #ff3d3d;
+.badge{
+    display:inline-block;
+    padding:10px 18px;
+    border-radius:100px;
+    background:#ffffff0d;
+    border:1px solid #ffffff20;
+    color:#aaa;
+    margin-bottom:25px;
+    font-size:13px;
 }
 
-.subtitle {
-    max-width: 650px;
-    color: #999;
-    font-size: 18px;
-    line-height: 1.6;
-    margin-top: 25px;
-
-    animation: fadeUp 0.9s ease 0.15s both;
+h1{
+    font-size:clamp(50px,10vw,125px);
+    line-height:.82;
+    font-weight:1000;
+    letter-spacing:-7px;
+    text-transform:uppercase;
+    text-shadow:
+        5px 5px 0 #ff174f,
+        -5px -5px 0 #00e5ff;
+    animation:glitch 3s infinite;
 }
 
-.start-btn {
-    margin-top: 35px;
-    padding: 18px 45px;
-    border: none;
-    border-radius: 17px;
-
-    background: white;
-    color: #090909;
-
-    font-size: 17px;
-    font-weight: 900;
-
-    cursor: pointer;
-
-    transition: 0.25s;
-
-    animation: fadeUp 0.9s ease 0.3s both;
+@keyframes glitch{
+    0%,90%,100%{transform:translate(0)}
+    91%{transform:translate(-5px,2px)}
+    92%{transform:translate(5px,-2px)}
+    93%{transform:translate(-2px,0)}
 }
 
-.start-btn:hover {
-    transform: translateY(-4px) scale(1.02);
+.subtitle{
+    margin:35px auto;
+    max-width:650px;
+    color:#aaa;
+    font-size:18px;
+    line-height:1.6;
 }
 
-.start-btn:active {
-    transform: scale(0.96);
+.start{
+    border:0;
+    cursor:pointer;
+    padding:20px 45px;
+    border-radius:18px;
+    background:white;
+    color:black;
+    font-weight:1000;
+    font-size:18px;
+    transition:.2s;
+    box-shadow:0 0 50px #ffffff33;
 }
 
-/* DELETE BOX */
-
-.delete-section {
-    width: calc(100% - 30px);
-    max-width: 680px;
-
-    margin: 0 auto;
-
-    padding: 32px;
-
-    background: rgba(255,255,255,0.055);
-    border: 1px solid rgba(255,255,255,0.1);
-
-    border-radius: 28px;
-
-    backdrop-filter: blur(20px);
-
-    opacity: 0;
-    transform: translateY(50px);
-
-    pointer-events: none;
-
-    transition: 0.7s ease;
-}
-
-.delete-section.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-.delete-section h2 {
-    font-size: 30px;
-    margin-bottom: 8px;
-}
-
-.description {
-    color: #999;
-    margin-bottom: 25px;
-}
-
-/* INPUT */
-
-.input-box {
-    display: flex;
-    gap: 10px;
-}
-
-input {
-    flex: 1;
-
-    min-width: 0;
-
-    padding: 17px;
-
-    border-radius: 15px;
-
-    border: 1px solid rgba(255,255,255,0.1);
-
-    background: rgba(0,0,0,0.4);
-
-    color: white;
-
-    outline: none;
-
-    font-size: 16px;
-
-    transition: 0.25s;
-}
-
-input:focus {
-    border-color: rgba(255,255,255,0.45);
-
+.start:hover{
+    transform:scale(1.08) rotate(-2deg);
     box-shadow:
-        0 0 0 4px rgba(255,255,255,0.04);
+        0 0 40px #ff174f,
+        0 0 80px #00e5ff;
 }
 
-.search-btn {
-    border: none;
+/* СЕКЦИИ */
 
-    padding: 0 25px;
-
-    border-radius: 15px;
-
-    background: #ff3d3d;
-
-    color: white;
-
-    font-weight: 900;
-
-    cursor: pointer;
-
-    transition: 0.25s;
+section{
+    width:min(1100px,92%);
+    margin:0 auto;
+    padding:80px 0;
 }
 
-.search-btn:hover {
-    background: #ff5555;
-    transform: translateY(-2px);
+.title{
+    font-size:42px;
+    font-weight:1000;
+    margin-bottom:30px;
 }
 
-/* LOADING */
+/* КАРТОЧКИ */
 
-.loading {
-    display: none;
-
-    text-align: center;
-
-    color: #999;
-
-    margin-top: 25px;
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
 }
 
-.loading.show {
-    display: block;
+.card{
+    padding:25px;
+    border:1px solid #ffffff15;
+    background:#ffffff08;
+    border-radius:25px;
+    backdrop-filter:blur(10px);
+    transition:.3s;
 }
 
-.spinner {
-    width: 30px;
-    height: 30px;
-
-    border: 3px solid #333;
-    border-top-color: white;
-
-    border-radius: 50%;
-
-    margin: 0 auto 10px;
-
-    animation: spin 0.8s linear infinite;
+.card:hover{
+    transform:translateY(-8px) rotate(.5deg);
+    border-color:#ffffff40;
 }
 
-/* USER */
-
-.user-card {
-    display: none;
-
-    align-items: center;
-
-    gap: 20px;
-
-    margin-top: 25px;
-
-    padding: 20px;
-
-    border-radius: 20px;
-
-    background: rgba(0,0,0,0.35);
-
-    border: 1px solid rgba(255,255,255,0.08);
-
-    animation: pop 0.45s ease;
+.big{
+    font-size:35px;
+    margin-bottom:10px;
 }
 
-.user-card.show {
-    display: flex;
+.card h3{
+    margin-bottom:8px;
 }
 
-.avatar {
-    width: 115px;
-    height: 115px;
-
-    object-fit: contain;
-
-    border-radius: 20px;
-
-    background: #171717;
+.card p{
+    color:#888;
+    line-height:1.5;
 }
 
-.username {
-    font-size: 23px;
-    font-weight: 900;
+/* УДАЛИТЕЛЬ */
+
+.delete-box{
+    position:relative;
+    overflow:hidden;
+    border-radius:35px;
+    padding:40px;
+    background:
+        linear-gradient(135deg,#ff174f12,#00e5ff0d),
+        #ffffff08;
+    border:1px solid #ffffff20;
 }
 
-.status {
-    margin-top: 8px;
-
-    color: #6ee58a;
-
-    font-size: 14px;
+.warning{
+    color:#ff496f;
+    font-weight:bold;
+    margin-bottom:10px;
 }
 
-/* DELETE BUTTON */
-
-.delete-btn {
-    display: none;
-
-    width: 100%;
-
-    margin-top: 20px;
-
-    padding: 17px;
-
-    border: none;
-
-    border-radius: 15px;
-
-    background: #ff3030;
-
-    color: white;
-
-    font-size: 16px;
-
-    font-weight: 900;
-
-    cursor: pointer;
-
-    transition: 0.25s;
+.delete-box h2{
+    font-size:clamp(35px,6vw,70px);
+    margin-bottom:10px;
 }
 
-.delete-btn:hover {
-    background: #ff4848;
-
-    transform: translateY(-2px);
+.delete-box p{
+    color:#999;
+    margin-bottom:30px;
 }
 
-/* RESULT */
-
-.result {
-    display: none;
-
-    margin-top: 20px;
-
-    padding: 22px;
-
-    border-radius: 18px;
-
-    text-align: center;
-
-    background: rgba(255,50,50,0.12);
-
-    border: 1px solid rgba(255,50,50,0.25);
-
-    animation: pop 0.4s ease;
+.input-wrap{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
 }
 
-.result.show {
-    display: block;
+input{
+    flex:1;
+    min-width:200px;
+    padding:18px;
+    border-radius:15px;
+    border:1px solid #ffffff20;
+    background:#00000066;
+    color:white;
+    outline:none;
+    font-size:16px;
 }
 
-.result h3 {
-    font-size: 24px;
-    margin-bottom: 8px;
+input:focus{
+    border-color:#ff174f;
+    box-shadow:0 0 20px #ff174f33;
 }
 
-.result p {
-    color: #aaa;
-    line-height: 1.5;
+.delete-btn{
+    padding:18px 25px;
+    border:0;
+    border-radius:15px;
+    background:#ff174f;
+    color:white;
+    font-weight:1000;
+    cursor:pointer;
+    transition:.2s;
 }
 
-/* REVIEWS */
-
-.reviews {
-    max-width: 1100px;
-
-    margin: auto;
-
-    padding: 120px 25px 80px;
+.delete-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 30px #ff174f88;
 }
 
-.reviews h2 {
-    text-align: center;
+/* ТЕРМИНАЛ */
 
-    font-size: 43px;
-
-    margin-bottom: 45px;
+.terminal{
+    margin-top:25px;
+    background:#020202;
+    border:1px solid #ffffff15;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 70px #000;
 }
 
-.review-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 18px;
+.terminal-head{
+    padding:12px 15px;
+    border-bottom:1px solid #ffffff10;
+    color:#777;
+    font-size:12px;
 }
 
-.review {
-    padding: 25px;
-
-    border-radius: 22px;
-
-    background: rgba(255,255,255,0.05);
-
-    border: 1px solid rgba(255,255,255,0.08);
-
-    transition: 0.3s;
+.terminal-body{
+    padding:20px;
+    height:230px;
+    overflow:hidden;
+    font-family:monospace;
+    color:#00ff88;
+    font-size:13px;
+    line-height:1.7;
 }
 
-.review:hover {
-    transform: translateY(-6px);
-
-    background: rgba(255,255,255,0.08);
+.red{
+    color:#ff174f;
 }
 
-.stars {
-    letter-spacing: 3px;
-
-    margin-bottom: 15px;
+.blue{
+    color:#00e5ff;
 }
 
-.review p {
-    color: #bbb;
+/* СТАТИСТИКА */
 
-    line-height: 1.6;
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
 }
 
-.review b {
-    display: block;
-
-    margin-top: 18px;
+.stat{
+    text-align:center;
+    padding:30px 15px;
+    border-radius:20px;
+    background:#ffffff08;
+    border:1px solid #ffffff12;
 }
 
-/* FOOTER */
-
-footer {
-    text-align: center;
-
-    padding: 35px 20px;
-
-    color: #666;
-
-    font-size: 13px;
+.stat strong{
+    display:block;
+    font-size:38px;
+    margin-bottom:5px;
 }
 
-.warning {
-    margin-top: 10px;
-
-    color: #777;
+.stat span{
+    color:#777;
 }
 
-/* ANIMATIONS */
+/* ОТЗЫВЫ */
 
-@keyframes fadeDown {
-    from {
-        opacity: 0;
-        transform: translateY(-35px);
+.review{
+    padding:25px;
+    background:#ffffff08;
+    border:1px solid #ffffff15;
+    border-radius:22px;
+}
+
+.stars{
+    color:#ffe600;
+    margin-bottom:12px;
+}
+
+.review p{
+    color:#bbb;
+    line-height:1.5;
+}
+
+.author{
+    margin-top:15px;
+    color:#666;
+    font-size:13px;
+}
+
+/* БАННЕР */
+
+.chaos{
+    text-align:center;
+    padding:100px 20px;
+    overflow:hidden;
+}
+
+.chaos h2{
+    font-size:clamp(45px,9vw,100px);
+    font-weight:1000;
+    text-transform:uppercase;
+    animation:shake .15s infinite;
+}
+
+@keyframes shake{
+    0%{transform:translate(0)}
+    25%{transform:translate(2px,-1px)}
+    50%{transform:translate(-2px,2px)}
+    75%{transform:translate(1px,1px)}
+    100%{transform:translate(0)}
+}
+
+.chaos p{
+    color:#777;
+    margin-top:20px;
+}
+
+/* МОДАЛКА */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:#000000dd;
+    backdrop-filter:blur(15px);
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(600px,100%);
+    text-align:center;
+    padding:45px 25px;
+    border-radius:30px;
+    background:#090909;
+    border:1px solid #ffffff20;
+    box-shadow:
+        0 0 80px #ff174f33,
+        0 0 120px #00e5ff22;
+    animation:pop .35s ease;
+}
+
+@keyframes pop{
+    from{
+        transform:scale(.5) rotate(-5deg);
+        opacity:0;
     }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    to{
+        transform:scale(1);
+        opacity:1;
     }
 }
 
-@keyframes pop {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+.modal-emoji{
+    font-size:75px;
 }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+.modal-box h2{
+    font-size:40px;
+    margin:15px 0;
 }
 
-/* MOBILE */
+.modal-box p{
+    color:#888;
+    line-height:1.6;
+}
 
-@media (max-width: 700px) {
+.close{
+    margin-top:25px;
+    padding:15px 30px;
+    border:0;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
 
-    header {
-        padding: 18px 20px;
+/* ФУТЕР */
+
+footer{
+    text-align:center;
+    padding:50px 20px;
+    border-top:1px solid #ffffff10;
+    color:#555;
+    font-size:13px;
+}
+
+footer b{
+    color:#ff174f;
+}
+
+/* МОБИЛКА */
+
+@media(max-width:600px){
+    h1{
+        letter-spacing:-4px;
     }
 
-    .hero h1 {
-        letter-spacing: -2px;
+    .stats{
+        grid-template-columns:1fr;
     }
 
-    .subtitle {
-        font-size: 16px;
+    .delete-box{
+        padding:25px;
     }
 
-    .delete-section {
-        padding: 22px;
+    .input-wrap{
+        flex-direction:column;
     }
 
-    .input-box {
-        flex-direction: column;
-    }
-
-    .search-btn {
-        padding: 16px;
-    }
-
-    .user-card {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .review-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .reviews h2 {
-        font-size: 34px;
+    input,
+    .delete-btn{
+        width:100%;
     }
 }
 </style>
@@ -535,236 +513,357 @@ footer {
 
 <body>
 
+<div class="bg"></div>
+<div class="grid"></div>
+
 <header>
+    <div class="logo">ACCOUNT<span>.EXE</span></div>
 
-    <div class="logo">
-        ACCOUNT<span>DELETE</span>
+    <div class="status">
+        <span class="dot"></span>
+        СЕРВЕР ЖИВ
     </div>
-
-    <div class="badge">
-        SIMULATOR
-    </div>
-
 </header>
 
 
-<section class="hero">
+<!-- HERO -->
 
-    <h1>
-        УДАЛЯЕМ<br>
-        <span>ЛЮБОЙ АККАУНТ!</span>
-    </h1>
+<div class="hero">
 
-    <p class="subtitle">
-        Введи ник Roblox и проверь,
-        насколько быстро наш супер-мощный
-        «удалитель» справится с аккаунтом.
-    </p>
+<div class="hero-content">
 
-    <button class="start-btn" onclick="startSite()">
-        СТАРТ →
-    </button>
+<div class="badge">
+    ⚠️ СУПЕР-СЕКРЕТНАЯ ТЕХНОЛОГИЯ 100% НЕ СЕРЬЁЗНО
+</div>
+
+<h1>
+    УДАЛЯЕМ<br>
+    ЛЮБОЙ<br>
+    АККАУНТ
+</h1>
+
+<p class="subtitle">
+    Самый подозрительный сервис интернета.
+    Нажимаешь кнопку — ничего не происходит.
+    Но выглядит очень профессионально.
+</p>
+
+<button class="start" onclick="scrollToDelete()">
+    🚀 НАЧАТЬ КАТАСТРОФУ
+</button>
+
+</div>
+</div>
+
+
+<!-- ФИЧИ -->
+
+<section>
+
+<div class="title">
+    Почему это абсолютно гениально?
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="big">💀</div>
+<h3>Удаление 3000</h3>
+<p>
+Мы удаляем настолько быстро,
+что компьютер даже не успевает понять,
+что произошло.
+</p>
+</div>
+
+<div class="card">
+<div class="big">🧠</div>
+<h3>Нейросеть</h3>
+<p>
+Наш искусственный интеллект
+состоит из двух операторов
+if и alert.
+</p>
+</div>
+
+<div class="card">
+<div class="big">⚡</div>
+<h3>Квантовая скорость</h3>
+<p>
+Результат появляется ещё до того,
+как ты нажал кнопку.
+Наверное.
+</p>
+</div>
+
+<div class="card">
+<div class="big">🗿</div>
+<h3>Абсолютная безопасность</h3>
+<p>
+Мы не просим пароль,
+токены или другие секретные данные.
+</p>
+</div>
+
+</div>
+</section>
+
+
+<!-- УДАЛИТЕЛЬ -->
+
+<section id="deleter">
+
+<div class="delete-box">
+
+<div class="warning">
+    🔴 ОЧЕНЬ СЕРЬЁЗНАЯ КНОПКА
+</div>
+
+<h2>
+    УДАЛИТЕЛЬ.EXE
+</h2>
+
+<p>
+    Введи любое имя. Система проведёт
+    чрезвычайно важный анализ из воздуха.
+</p>
+
+<div class="input-wrap">
+
+<input
+    id="username"
+    type="text"
+    maxlength="30"
+    placeholder="Например: builderman"
+/>
+
+<button class="delete-btn" onclick="destroyAccount()">
+    💣 УНИЧТОЖИТЬ
+</button>
+
+</div>
+
+<div class="terminal">
+
+<div class="terminal-head">
+    ● ● ● &nbsp; ACCOUNT_TERMINAL.exe
+</div>
+
+<div class="terminal-body" id="terminal">
+
+<span class="blue">[SYSTEM]</span>
+ Инициализация супер-системы...<br>
+
+<span class="blue">[SYSTEM]</span>
+ Подключение к калькулятору...<br>
+
+<span class="blue">[SYSTEM]</span>
+ Проверка интернета... OK<br>
+
+<span class="red">[WARNING]</span>
+ Слишком много мемов обнаружено.<br>
+
+<span class="blue">[SYSTEM]</span>
+ Ожидание пользователя...
+<br>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- СТАТИСТИКА -->
+
+<section>
+
+<div class="title">
+    📊 Абсолютно настоящая статистика
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<strong id="counter1">0</strong>
+<span>аккаунтов удалено</span>
+</div>
+
+<div class="stat">
+<strong id="counter2">0</strong>
+<span>довольных людей</span>
+</div>
+
+<div class="stat">
+<strong id="counter3">0%</strong>
+<span>научной точности</span>
+</div>
+
+</div>
 
 </section>
 
 
-<section class="delete-section" id="deleteSection">
+<!-- ОТЗЫВЫ -->
 
-    <h2>
-        Введи ник Roblox
-    </h2>
+<section>
 
-    <p class="description">
-        Мы найдём публичный профиль и покажем его аватар.
-    </p>
+<div class="title">
+    💬 Что говорят пользователи
+</div>
 
+<div class="cards">
 
-    <div class="input-box">
+<div class="review">
+<div class="stars">★★★★★</div>
+<p>
+«Я ввёл имя и через 0.2 секунды
+понял, что меня обманули. 10/10.»
+</p>
+<div class="author">— Пользователь №18472</div>
+</div>
 
-        <input
-            id="username"
-            type="text"
-            placeholder="Например: Builderman"
-            autocomplete="off"
-        >
+<div class="review">
+<div class="stars">★★★★★</div>
+<p>
+«реально хороший удалитель»
+</p>
+<div class="author">— какой-то чел</div>
+</div>
 
-        <button
-            class="search-btn"
-            onclick="findUser()"
-        >
-            НАЙТИ
-        </button>
+<div class="review">
+<div class="stars">★★★★★</div>
+<p>
+«Нажал кнопку. Ничего не произошло.
+Лучший сайт в моей жизни.»
+</p>
+<div class="author">— Аноним</div>
+</div>
 
-    </div>
-
-
-    <div class="loading" id="loading">
-
-        <div class="spinner"></div>
-
-        Ищем профиль...
-
-    </div>
-
-
-    <div class="user-card" id="userCard">
-
-        <img
-            id="avatar"
-            class="avatar"
-            alt="Roblox Avatar"
-        >
-
-        <div>
-
-            <div
-                class="username"
-                id="displayName"
-            ></div>
-
-            <div class="status">
-                ● Профиль найден
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <button
-        class="delete-btn"
-        id="deleteButton"
-        onclick="fakeDelete()"
-    >
-        🗑 УДАЛИТЬ АККАУНТ
-    </button>
-
-
-    <div
-        class="result"
-        id="result"
-    >
-
-        <h3>
-            Упс, твой аккаунт удален :)
-        </h3>
-
-        <p>
-            Шучу 😎 Это всего лишь симулятор!
-            Настоящий аккаунт Roblox не удаляется.
-        </p>
-
-    </div>
+</div>
 
 </section>
 
 
-<section class="reviews">
+<!-- БЕЗУМИЕ -->
 
-    <h2>
-        Отзывы
-    </h2>
+<div class="chaos">
 
+<h2>
+    НЕ НАЖИМАЙ<br>
+    ЭТУ КНОПКУ
+</h2>
 
-    <div class="review-grid">
+<p>
+    Ладно, нажми. Мы всё равно знаем, что ты нажмёшь.
+</p>
 
-        <div class="review">
-
-            <div class="stars">
-                ⭐⭐⭐⭐⭐
-            </div>
-
-            <p>
-                Реально хороший удалитель 😂
-                Я уже испугался!
-            </p>
-
-            <b>
-                — Max_Roblox
-            </b>
-
-        </div>
-
-
-        <div class="review">
-
-            <div class="stars">
-                ⭐⭐⭐⭐⭐
-            </div>
-
-            <p>
-                Аватар загрузился моментально.
-                10/10 симулятор.
-            </p>
-
-            <b>
-                — ProPlayer
-            </b>
-
-        </div>
-
-
-        <div class="review">
-
-            <div class="stars">
-                ⭐⭐⭐⭐⭐
-            </div>
-
-            <p>
-                Нажал удалить и чуть не заплакал 💀
-                Потом понял, что это прикол.
-            </p>
-
-            <b>
-                — RobloxFan
-            </b>
-
-        </div>
-
-    </div>
-
-</section>
+</div>
 
 
 <footer>
 
-    © 2026 AccountDelete Simulator
+<p>
+    <b>ACCOUNT.EXE</b> — это шуточный симулятор.
+</p>
 
-    <div class="warning">
-        ⚠️ Это шуточный симулятор.
-        Он НЕ удаляет аккаунты Roblox
-        и не является официальным сайтом Roblox.
-    </div>
+<br>
+
+<p>
+    Никакие реальные аккаунты не удаляются.
+    Сервис не связан с Roblox.
+    Пароли и секретные данные не требуются.
+</p>
 
 </footer>
 
 
+<!-- МОДАЛКА -->
+
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<div class="modal-emoji">
+    💀
+</div>
+
+<h2>
+    УПС.
+</h2>
+
+<p id="resultText">
+    Аккаунт успешно удалён.
+</p>
+
+<button class="close" onclick="closeModal()">
+    Я ПОНЯЛ ЧТО ЭТО ПРИКОЛ 😂
+</button>
+
+</div>
+
+</div>
+
+
 <script>
 
-/* Кнопка СТАРТ */
+/* ПРОКРУТКА */
 
-function startSite() {
+function scrollToDelete(){
 
-    const section =
-        document.getElementById("deleteSection");
-
-    section.classList.add("active");
-
-    setTimeout(function() {
-
-        section.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-
-    }, 100);
+    document.getElementById("deleter")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
 
 }
 
 
-/* Поиск пользователя */
+/* ТЕРМИНАЛ */
 
-async function findUser() {
+const terminal =
+document.getElementById("terminal");
+
+const messages = [
+    "[SYSTEM] Проверка кармы...",
+    "[SYSTEM] Поиск кнопки удаления...",
+    "[AI] Анализ имени пользователя...",
+    "[AI] Имя выглядит подозрительно.",
+    "[SYSTEM] Запуск суперсекретного алгоритма...",
+    "[SYSTEM] Загрузка мемов...",
+    "[WARNING] Мемов слишком много.",
+    "[SYSTEM] Попытка понять происходящее...",
+    "[AI] Я тоже не понимаю.",
+    "[SYSTEM] Подготовка кнопки...",
+    "[SYSTEM] Всё готово."
+];
+
+let messageIndex = 0;
+
+setInterval(() => {
+
+    if(messageIndex >= messages.length){
+        messageIndex = 0;
+    }
+
+    const line = document.createElement("div");
+
+    line.textContent =
+        messages[messageIndex];
+
+    terminal.appendChild(line);
+
+    terminal.scrollTop =
+        terminal.scrollHeight;
+
+    messageIndex++;
+
+},1800);
+
+
+/* УДАЛЕНИЕ */
+
+function destroyAccount(){
 
     const input =
         document.getElementById("username");
@@ -772,220 +871,179 @@ async function findUser() {
     const username =
         input.value.trim();
 
+    if(!username){
 
-    const userCard =
-        document.getElementById("userCard");
+        input.focus();
 
-    const avatar =
-        document.getElementById("avatar");
-
-    const displayName =
-        document.getElementById("displayName");
-
-    const deleteButton =
-        document.getElementById("deleteButton");
-
-    const result =
-        document.getElementById("result");
-
-    const loading =
-        document.getElementById("loading");
-
-
-    if (!username) {
-
-        alert("Введи ник Roblox!");
+        terminal.innerHTML +=
+        "<div style='color:#ff174f'>[ERROR] Введите имя пользователя.</div>";
 
         return;
     }
 
+    terminal.innerHTML +=
+    "<div style='color:#00e5ff'>[USER] " +
+    escapeHtml(username) +
+    "</div>";
 
-    userCard.classList.remove("show");
+    terminal.innerHTML +=
+    "<div style='color:#ffe600'>[SYSTEM] УДАЛЕНИЕ ЗАПУЩЕНО...</div>";
 
-    deleteButton.style.display = "none";
+    setTimeout(() => {
 
-    result.classList.remove("show");
+        terminal.innerHTML +=
+        "<div style='color:#ff174f'>[WARNING] Слишком мощно...</div>";
 
-    loading.classList.add("show");
+    },500);
 
+    setTimeout(() => {
 
-    try {
+        terminal.innerHTML +=
+        "<div style='color:#00ff88'>[SYSTEM] УДАЛЕНИЕ ЗАВЕРШЕНО.</div>";
 
-        /*
-         * Ищем Roblox-пользователя
-         */
+        showResult(username);
 
-        const response =
-            await fetch(
-                "https://users.roblox.com/v1/users/search?keyword="
-                + encodeURIComponent(username)
-                + "&limit=10"
-            );
+    },1200);
 
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Ошибка Roblox API"
-            );
-
-        }
+}
 
 
-        const data =
-            await response.json();
+/* ЭКРАН РЕЗУЛЬТАТА */
+
+function showResult(username){
+
+    const modal =
+        document.getElementById("modal");
+
+    const result =
+        document.getElementById("resultText");
+
+    result.innerHTML =
+        "Упс, <b>" +
+        escapeHtml(username) +
+        "</b> удалён.<br><br>" +
+        "Шучу 😂<br>" +
+        "Это всего лишь симулятор.";
+
+    modal.classList.add("show");
+
+}
 
 
-        if (
-            !data.data ||
-            data.data.length === 0
-        ) {
+/* ЗАКРЫТИЕ */
 
-            loading.classList.remove("show");
+function closeModal(){
 
-            alert(
-                "Пользователь не найден!"
-            );
+    document
+    .getElementById("modal")
+    .classList.remove("show");
 
-            return;
-        }
+}
 
 
-        /*
-         * Сначала пытаемся найти
-         * точное совпадение ника.
-         */
+/* БЕЗОПАСНЫЙ ТЕКСТ */
 
-        let user =
-            data.data.find(function(item) {
+function escapeHtml(text){
 
-                return item.name.toLowerCase()
-                    === username.toLowerCase();
+    return text
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
 
-            });
-
-
-        /*
-         * Если точного совпадения нет,
-         * берём первый результат.
-         */
-
-        if (!user) {
-
-            user = data.data[0];
-
-        }
+}
 
 
-        /*
-         * Получаем аватар.
-         */
+/* СТАТИСТИКА */
 
-        const avatarResponse =
-            await fetch(
-                "https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds="
-                + user.id
-                + "&size=420x420&format=Png&isCircular=false"
-            );
+function animateNumber(
+    element,
+    target,
+    suffix=""
+){
 
+    let current = 0;
 
-        if (!avatarResponse.ok) {
+    const step =
+        Math.ceil(target / 80);
 
-            throw new Error(
-                "Ошибка аватара"
-            );
+    const timer =
+        setInterval(() => {
 
-        }
+            current += step;
 
+            if(current >= target){
 
-        const avatarData =
-            await avatarResponse.json();
+                current = target;
 
+                clearInterval(timer);
 
-        if (
-            avatarData.data &&
-            avatarData.data.length > 0
-        ) {
+            }
 
-            avatar.src =
-                avatarData.data[0].imageUrl;
+            element.textContent =
+                current.toLocaleString("ru-RU")
+                + suffix;
 
-        }
+        },25);
 
-
-        displayName.textContent =
-            user.name;
+}
 
 
-        loading.classList.remove("show");
+/* СЛУЧАЙНЫЕ БЕЗУМНЫЕ ЧИСЛА */
+
+animateNumber(
+    document.getElementById("counter1"),
+    69420
+);
+
+animateNumber(
+    document.getElementById("counter2"),
+    1337
+);
+
+animateNumber(
+    document.getElementById("counter3"),
+    0,
+    "%"
+);
+
+setTimeout(() => {
+
+    document.getElementById("counter3")
+    .textContent = "0%";
+
+},2200);
 
 
-        userCard.classList.add("show");
+/* ENTER */
 
+document
+.getElementById("username")
+.addEventListener("keydown", function(e){
 
-        deleteButton.style.display =
-            "block";
+    if(e.key === "Enter"){
 
-
-        userCard.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-
-
-    } catch (error) {
-
-        console.error(error);
-
-        loading.classList.remove("show");
-
-        alert(
-            "Не удалось загрузить профиль. Попробуй ещё раз."
-        );
+        destroyAccount();
 
     }
 
-}
+});
 
 
-/*
- * Шуточная кнопка удаления.
- * Никаких реальных действий с аккаунтом нет.
- */
-
-function fakeDelete() {
-
-    const result =
-        document.getElementById("result");
-
-
-    result.classList.add("show");
-
-
-    result.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
-
-}
-
-
-/*
- * Можно нажать Enter
- * вместо кнопки НАЙТИ.
- */
+/* КЛИК ПО ФОНУ МОДАЛКИ */
 
 document
-    .getElementById("username")
-    .addEventListener("keydown", function(event) {
+.getElementById("modal")
+.addEventListener("click",function(e){
 
-        if (event.key === "Enter") {
+    if(e.target === this){
 
-            findUser();
+        closeModal();
 
-        }
+    }
 
-    });
+});
 
 </script>
 
