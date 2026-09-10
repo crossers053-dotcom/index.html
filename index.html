@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Roblox Account Deleter</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at top, #272727 0%, #101010 45%, #050505 100%);
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.06), transparent 25%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,.04), transparent 25%);
+    pointer-events: none;
+}
+
+/* HEADER */
+
+header {
+    width: 100%;
+    padding: 22px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #ff3b3b;
+}
+
+.badge {
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.1);
+    font-size: 12px;
+    color: #aaa;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 78vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 50px 20px;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 8vw, 82px);
+    line-height: .95;
+    font-weight: 900;
+    max-width: 900px;
+    letter-spacing: -4px;
+    animation: fadeDown .9s ease forwards;
+}
+
+.hero h1 span {
+    color: #ff4040;
+}
+
+.subtitle {
+    margin-top: 25px;
+    color: #aaa;
+    font-size: 18px;
+    max-width: 600px;
+    line-height: 1.6;
+    animation: fadeUp 1s ease .2s both;
+}
+
+.start-btn {
+    margin-top: 35px;
+    border: none;
+    padding: 18px 42px;
+    border-radius: 16px;
+    background: white;
+    color: #080808;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .25s;
+    box-shadow: 0 10px 40px rgba(255,255,255,.08);
+    animation: fadeUp 1s ease .4s both;
+}
+
+.start-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 15px 50px rgba(255,255,255,.15);
+}
+
+.start-btn:active {
+    transform: scale(.97);
+}
+
+/* DELETE SECTION */
+
+.delete-section {
+    max-width: 650px;
+    width: calc(100% - 30px);
+    margin: 0 auto;
+    padding: 35px;
+    background: rgba(255,255,255,.055);
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 28px;
+    backdrop-filter: blur(20px);
+
+    opacity: 0;
+    transform: translateY(40px);
+    pointer-events: none;
+    transition: .7s ease;
+}
+
+.delete-section.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.delete-section h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.delete-section p {
+    color: #999;
+    margin-bottom: 25px;
+}
+
+.input-box {
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    flex: 1;
+    min-width: 0;
+    padding: 17px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.1);
+    background: rgba(0,0,0,.35);
+    color: white;
+    outline: none;
+    font-size: 16px;
+    transition: .2s;
+}
+
+input:focus {
+    border-color: rgba(255,255,255,.4);
+    box-shadow: 0 0 0 4px rgba(255,255,255,.04);
+}
+
+.search-btn {
+    border: none;
+    border-radius: 14px;
+    padding: 0 22px;
+    background: #ff3b3b;
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.search-btn:hover {
+    background: #ff5252;
+    transform: translateY(-2px);
+}
+
+/* USER CARD */
+
+.user-card {
+    margin-top: 25px;
+    padding: 22px;
+    border-radius: 20px;
+    background: rgba(0,0,0,.3);
+    border: 1px solid rgba(255,255,255,.08);
+
+    display: none;
+    align-items: center;
+    gap: 20px;
+
+    animation: fadeUp .5s ease;
+}
+
+.user-card.show {
+    display: flex;
+}
+
+.avatar {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    border-radius: 18px;
+    background: #171717;
+}
+
+.username {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.status {
+    margin-top: 7px;
+    color: #70df8a;
+    font-size: 14px;
+}
+
+.delete-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 17px;
+    border: none;
+    border-radius: 15px;
+    background: #ff3030;
+    color: white;
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.delete-btn:hover {
+    background: #ff4949;
+    transform: translateY(-2px);
+}
+
+/* RESULT */
+
+.result {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 16px;
+    background: rgba(255, 60, 60, .12);
+    border: 1px solid rgba(255, 60, 60, .25);
+    text-align: center;
+    animation: pop .45s ease;
+}
+
+.result.show {
+    display: block;
+}
+
+.result h3 {
+    font-size: 23px;
+    margin-bottom: 7px;
+}
+
+.result p {
+    margin: 0;
+    color: #aaa;
+}
+
+/* REVIEWS */
+
+.reviews {
+    padding: 110px 7% 80px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.reviews h2 {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 45px;
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.review {
+    padding: 25px;
+    border-radius: 22px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
+    transition: .3s;
+}
+
+.review:hover {
+    transform: translateY(-6px);
+    background: rgba(255,255,255,.07);
+}
+
+.stars {
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+}
+
+.review p {
+    color: #bbb;
+    line-height: 1.6;
+}
+
+.review b {
+    display: block;
+    margin-top: 20px;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 35px 20px;
+    color: #666;
+    font-size: 13px;
+}
+
+.warning {
+    margin-top: 10px;
+    color: #888;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pop {
+    from {
+        opacity: 0;
+        transform: scale(.92);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 18px 20px;
+    }
+
+    .hero {
+        min-height: 70vh;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .delete-section {
+        padding: 22px;
+    }
+
+    .input-box {
+        flex-direction: column;
+    }
+
+    .search-btn {
+        padding: 16px;
+    }
+
+    .review-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reviews h2 {
+        font-size: 32px;
+    }
+
+    .user-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">ACCOUNT<span>DELETE</span></div>
+    <div class="badge">FUN SIMULATOR</div>
+</header>
+
+<section class="hero">
+
+    <h1>
+        УДАЛЯЕМ<br>
+        <span>ЛЮБОЙ АККАУНТ!</span>
+    </h1>
+
+    <p class="subtitle">
+        Введи ник Roblox и проверь, насколько быстро наш
+        супер-мощный «удалитель» справится с аккаунтом.
+    </p>
+
+    <button class="start-btn" onclick="start()">
+        СТАРТ →
+    </button>
+
+</section>
+
+
+<section class="delete-section" id="deleteSection">
+
+    <h2>Введите ник Roblox</h2>
+
+    <p>
+        Мы найдём профиль и покажем его аватар.
+    </p>
+
+    <div class="input-box">
+
+        <input
+            id="username"
+            type="text"
+            placeholder="Например: Builderman"
+            autocomplete="off"
+        >
+
+        <button class="search-btn" onclick="findUser()">
+            НАЙТИ
+        </button>
+
+    </div>
+
+
+    <div class="user-card" id="userCard">
+
+        <img
+            id="avatar"
+            class="avatar"
+            alt="Roblox avatar"
+        >
+
+        <div>
+            <div class="username" id="displayName"></div>
+            <div class="status">
+                ● Профиль найден
+            </div>
+        </div>
+
+    </div>
+
+
+    <button
+        class="delete-btn"
+        id="deleteButton"
+        onclick="fakeDelete()"
+        style="display:none;"
+    >
+        🗑 УДАЛИТЬ АККАУНТ
+    </button>
+
+
+    <div class="result" id="result">
+
+        <h3>Упс, твой аккаунт удален :)</h3>
+
+        <p>
+            Шучу 😎 Это всего лишь симулятор!
+            Настоящий аккаунт Roblox не удаляется.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="reviews">
+
+    <h2>Отзывы</h2>
+
+    <div class="review-grid">
+
+        <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>
+                Реально хороший удалитель 😂
+                Я уже испугался!
+            </p>
+            <b>— Max_Roblox</b>
+        </div>
+
+        <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>
+                Аватар загрузился моментально.
+                10/10 симулятор.
+            </p>
+            <b>— ProPlayer</b>
+        </div>
+
+        <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>
+                Нажал удалить и чуть не заплакал 💀
+                Потом увидел, что это прикол.
+            </p>
+            <b>— RobloxFan</b>
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    © 2026 AccountDelete Simulator
+
+    <div class="warning">
+        ⚠️ Это шуточный сайт. Он НЕ удаляет аккаунты Roblox
+        и не является официальным сервисом Roblox.
+    </div>
+
+</footer>
+
+
+<script>
+
+const section = document.getElementById("deleteSection");
+
+function start() {
+
+    section.classList.add("active");
+
+    setTimeout(() => {
+        section.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }, 100);
+
+}
+
+
+async function findUser() {
+
+    const usernameInput =
+        document.getElementById("username");
+
+    const username =
+        usernameInput.value.trim();
+
+    const userCard =
+        document.getElementById("userCard");
+
+    const avatar =
+        document.getElementById("avatar");
+
+    const displayName =
+        document.getElementById("displayName");
+
+    const deleteButton =
+        document.getElementById("deleteButton");
+
+    const result =
+        document.getElementById("result");
+
+
+    if (!username) {
+
+        alert("Сначала введи ник Roblox!");
+
+        return;
+    }
+
+
+    userCard.classList.remove("show");
+    deleteButton.style.display = "none";
+    result.classList.remove("show");
+
+
+    try {
+
+        /*
+         * Получаем пользователя по нику.
+         * Это публичный Roblox endpoint.
+         */
+
+        const userResponse = await fetch(
+            "https://users.roblox.com/v1/usernames/users",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    usernames: [username],
+                    excludeBannedUsers: false
+                })
+            }
+        );
+
+
+        const userData =
+            await userResponse.json();
+
+
+        if (
+            !userData.data ||
+            userData.data.length === 0
+        ) {
+
+            alert(
+                "Пользователь с таким ником не найден."
+            );
+
+            return;
+        }
+
+
+        const user =
+            userData.data[0];
+
+
+        /*
+         * Получаем аватар пользователя.
+         */
+
+        const avatarResponse = await fetch(
+            "https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds="
+            + user.id
+            + "&size=420x420&format=Png&isCircular=false"
+        );
+
+
+        const avatarData =
+            await avatarResponse.json();
+
+
+        if (
+            avatarData.data &&
+            avatarData.data.length > 0
+        ) {
+
+            avatar.src =
+                avatarData.data[0].imageUrl;
+        }
+
+
+        displayName.textContent =
+            user.name;
+
+
+        userCard.classList.add("show");
+
+        deleteButton.style.display =
+            "block";
+
+
+        userCard.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Не удалось загрузить профиль. Попробуй ещё раз."
+        );
+
+    }
+
+}
+
+
+function fakeDelete() {
+
+    const result =
+        document.getElementById("result");
+
+    result.classList.add("show");
+
+    result.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
